@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ck-editor__editable_inline {
+  min-height: 200px;
+}
+
+.cdk-global-overlay-wrapper,
+.cdk-overlay-container {
+  z-index: 99999 !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

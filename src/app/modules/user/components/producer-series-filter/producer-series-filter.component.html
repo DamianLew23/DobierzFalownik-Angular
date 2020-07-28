@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-6">
+    <div>Filtry:
+      <div class="btn-group">
+        <div class="dropdown">
+          <button class="card-category btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">Producent
+            <ng-container *ngIf="selectedProducer">:
+              {{selectedProducer.name | uppercase}}
+            </ng-container>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let producer of producers$ | async"
+               (click)="producerFilter(producer)">{{producer.name}}</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="card-category btn btn-info dropdown-toggle ml-2" type="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  [disabled]="isSeriesDisable">Seria<ng-container *ngIf="selectedSeries">:
+            {{selectedSeries.name | uppercase}}
+          </ng-container>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngFor="let singleSeries of series$ | async"
+               (click)="seriesFilter(singleSeries)">{{singleSeries.name}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group float-right">
+      <a mat-raised-button class="btn btn-warning btn-block" (click)="resetFilters()"><i
+        class="material-icons">
+        cached
+      </i> Resetuj Filtry</a>
+    </div>
+  </div>
+</div>

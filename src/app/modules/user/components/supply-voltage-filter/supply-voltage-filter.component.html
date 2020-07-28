@@ -1,0 +1,30 @@
+<div class="card card-stats">
+    <div class="card-header card-header-warning card-header-icon">
+      <div class="card-icon">
+        <i class="material-icons">arrow_downward</i>
+      </div>
+      <h3 class="card-title">Napięcie Wejściowe</h3>
+      <div class="dropdown">
+        <button class="card-category btn btn-outline-secondary dropdown-toggle mt-2" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <ng-container *ngIf="supplyVoltageSymbol === null; else supplyVoltageNotSet">
+            Wybierz Napięcie Wejściowe
+          </ng-container>
+          <ng-template #supplyVoltageNotSet>
+            Napięcie Wejściowe: {{supplyVoltageSymbol}}
+          </ng-template>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="supplyVoltageFilter(null, null)">Dowolne</a>
+          <a class="dropdown-item" (click)="supplyVoltageFilter('VOLTAGE_1X230V', '1x230V')">1F - 1x230V</a>
+          <a class="dropdown-item" (click)="supplyVoltageFilter('VOLTAGE_3X400V', '3x400V')">3F - 3x400V</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="material-icons">info</i>
+        Wybierz napięcie wejściowe falownika. Dostępne warianty: 1F - 1x230V lub 3F - 3x400V.
+      </div>
+    </div>
+</div>

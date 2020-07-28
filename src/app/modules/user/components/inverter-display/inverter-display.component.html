@@ -1,0 +1,75 @@
+<h2 class="h3">
+  Falownik {{inverter.producerName}} {{inverter.seriesName}} {{inverter.model | uppercase}}
+</h2>
+<div class="row">
+  <div class="col-xl-2 p-0">
+    <img src="../../assets/img/200/200/{{inverter.featureImage}}" class="rounded float-left w-100"
+         alt="Falownik {{inverter.producerName}} {{inverter.seriesName}} - Model {{inverter.model}}">
+  </div>
+  <div class="col-xl-3 p-1">
+    <ul class="fa-ul ml-0">
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Producent: <strong>{{inverter.producerName}}</strong>,
+      </li>
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Seria: <strong>{{inverter.seriesName}}</strong>,
+      </li>
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Model:<strong>{{inverter.model}}</strong>,
+      </li>
+    </ul>
+    <ul class="fa-ul m-0">
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Napięcie zasilania: <strong>{{inverter.supplyVoltage}}</strong>,
+      </li>
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Napięcie wyjściowe: <strong>{{inverter.outputVoltage}}</strong>,
+      </li>
+    </ul>
+  </div>
+  <div class="col-xl-4 p-1">
+    <ul class="fa-ul">
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Moc falownika: <strong>{{inverter.power}}W</strong>,
+      </li>
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Prąd wyjściowy: <strong>{{inverter.current}}A</strong>,
+      </li>
+    </ul>
+    <ul class="fa-ul">
+      <li>
+        <i class="material-icons text-primary" style="font-size: 16px;">check_box</i> Stopień chrony: <strong>{{inverter.ip | uppercase}}</strong>,
+      </li>
+    </ul>
+  </div>
+  <div class="col-xl-3 py-1 px-3">
+    <p class="mb-1">
+      Cena: <strong>{{inverter.price}} zł netto</strong>
+    </p>
+    <a mat-raised-button class="btn btn-success btn-block" href="{{inverter.url}}" target="_blank" rel="nofollow">
+      <i class="material-icons">open_in_new</i> Zobacz w Sklepie
+    </a>
+    <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" attr.data-target="#collapse-{{index}}"
+            aria-expanded="false" attr.aria-controls="collapse-{{index}}">
+      <i class="material-icons">info</i> Więcej Informacji
+    </button>
+  </div>
+</div>
+<div class="collapse" id="collapse-{{index}}">
+  <div class="mt-3">
+    <div class="row">
+      <div class="col-xl-6">
+        <h3>
+          Opis Falownika:
+        </h3>
+        <div innerHtml="{{inverter.description}}"> </div>
+      </div>
+      <div class="col-xl-6">
+        <h3>
+          Dane Techniczne Falownika:
+        </h3>
+        <div innerHtml="{{inverter.techDescription}}"> </div>
+      </div>
+    </div>
+  </div>
+</div>

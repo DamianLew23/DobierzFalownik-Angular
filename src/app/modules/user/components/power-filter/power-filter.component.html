@@ -1,0 +1,37 @@
+<div class="card card-stats">
+    <div class="card-header card-header-danger card-header-icon">
+      <div class="card-icon">
+        <i class="material-icons">info_outline</i>
+      </div>
+      <h3 class="card-title">Moc Podłączonego Silnika</h3>
+      <p class="card-category">od 0.1kW do 22kW</p>
+      <div class="dropdown">
+        <button class="card-category btn btn-outline-secondary dropdown-toggle mt-2" type="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <ng-container *ngIf="power.minPower == null; else powerSet">
+            Wybierz Moc Silnika
+          </ng-container>
+          <ng-template #powerSet>
+            Moc Silnika: od {{power.minPower}}W do {{power.maxPower}}W
+          </ng-template>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="powerFilter(null, null)">Dowolna</a>
+          <a class="dropdown-item" (click)="powerFilter(100, 200)">od 0.1 do 0.2kW</a>
+          <a class="dropdown-item" (click)="powerFilter(400, 750)">od 0.4 do 0.75kW</a>
+          <a class="dropdown-item" (click)="powerFilter(1100, 1500)">od 1.1 do 1.5kW</a>
+          <a class="dropdown-item" (click)="powerFilter(2200, 3000)">od 2.2 do 3.0kW</a>
+          <a class="dropdown-item" (click)="powerFilter(4000, 5500)">od 4.0 do 5.5kW</a>
+          <a class="dropdown-item" (click)="powerFilter(7500, 15000)">od 7.5 do 15kW</a>
+          <a class="dropdown-item" (click)="powerFilter(18500, 22000)">od 18.5 do 22kW</a>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="material-icons">info</i> Wybierz moc silnika jaki będzie podłączony do
+        falownika. Dostępny zakres mocy: 0.1 - 2.2kW dla falowników 1F oraz 0.1 - 22kW dla
+        falowników 3F.
+      </div>
+    </div>
+</div>

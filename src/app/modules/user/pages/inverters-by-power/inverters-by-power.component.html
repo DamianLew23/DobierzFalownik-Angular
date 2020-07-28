@@ -1,0 +1,56 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+        <app-supply-voltage-filter
+          (supplyVoltageFilterEvent)="onSupplyVoltageFilterEvent($event)"
+        ></app-supply-voltage-filter>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+        <app-output-voltage-filter
+          (outputVoltageFilterEvent)="onOutputVoltageFilterEvent($event)"
+        ></app-output-voltage-filter>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <app-power-filter
+          (powerFilterEvent)="onPowerFilterEvent($event)"
+        ></app-power-filter>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <app-producer-series-filter
+              (producerFilterEvent)="onProducerFilterEvent($event)"
+              (seriesFilterEvent)="onSeriesFilterEvent($event)"
+              (resetFiltersEvent)="onResetFiltersEvent()"
+            ></app-producer-series-filter>
+          </div>
+          <div class="card-body">
+            <h2 class="mb-0">
+              Modele Falowników Spełniające Kryteria:
+            </h2>
+            <div class="spinner-container" *ngIf="inverterDataSource.loading$ | async">
+              <mat-spinner></mat-spinner>
+            </div>
+            <div class="alert alert-warning mt-3" role="alert" *ngIf="(inverters$ | async).length == 0">
+              Brak Falowników Spełniających Podane Kryteria!
+            </div>
+            <div class="tab-content">
+              <ng-container *ngFor="let inverter of inverters$ | async; let i=index">
+                <app-inverter-display [inverter]="inverter" [index]="i"></app-inverter-display>
+              </ng-container>
+            </div>
+            <mat-paginator [length]="(inverterDataSource.invertersCount$ | async)" [pageSize]="20"
+                           [pageSizeOptions]="[10, 20, 40, 60]"></mat-paginator>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

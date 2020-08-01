@@ -4,6 +4,7 @@ import {LoginRoutingModule} from './login-routing.module';
 import { SidebarLoginComponent } from './components/sidebar-login/sidebar-login.component';
 import { LoginComponent } from './pages/login/login.component';
 import {FormsModule} from '@angular/forms';
+import {CoreModule} from '../../core/core.module';
 
 
 
@@ -12,7 +13,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     LoginRoutingModule,
-    FormsModule
+    FormsModule,
+    CoreModule
   ]
 })
 export class LoginModule { }

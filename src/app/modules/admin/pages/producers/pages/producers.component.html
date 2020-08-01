@@ -1,0 +1,81 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sidebar-admin></app-sidebar-admin>
+  <div class="sidebar-background" style="background-image: url(../../../../../../../assets/img/sidebar-4.jpg)"></div>
+</div>
+<div class="main-panel">
+  <app-navbar></app-navbar>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <div class="row">
+                <div class="col-md-9">
+                  <h2 class="card-title display-4">
+                    Producenci Falowników w Bazie Danych
+                  </h2>
+                  <p class="card-category">
+                    Lista Producentów Falowników Wraz z Seriami Falowników Dostępnymi w Ofercie Danego Producenta
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-success" (click)="openModalAddProducer()">
+                    <i class="material-icons">
+                      add_circle_outline
+                    </i> Nowy Producent
+                  </button>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                <th>ID</th>
+                <th>Producent</th>
+                <th>Serie Falowników</th>
+                <th>URL Producenta</th>
+                <th>Opcje</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let producer of producers$ | async; let i=index" [attr.id]="producer.id">
+                  <td>
+                    {{i+1}}.
+                  </td>
+                  <td>{{producer.name}}</td>
+                  <td>
+                    <ng-container *ngFor="let singleSeries of producer.series">
+                      {{singleSeries.name}},
+                    </ng-container>
+                  </td>
+                  <td>{{producer.url}}</td>
+                  <td class="td-actions text-right">
+                    <button mat-raised-button type="button" matTooltip="Dodaj Serie" [matTooltipPosition]="'above'"
+                            class="btn btn-success btn-link btn-sm btn-just-icon" (click)="openModalAddSeries(producer)">
+                      <i class="material-icons">add_circle</i>
+                    </button>
+                    <button mat-raised-button type="button" matTooltip="Edycja Producenta"
+                            [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon"
+                            (click)="openModalEditProducer(producer)">
+                      <i class=" material-icons">edit</i>
+                    </button>
+                    <button mat-raised-button type="button" matTooltip="Usuń Producenta" [matTooltipPosition]="'above'"
+                            class="btn btn-danger btn-link btn-sm btn-just-icon" data-toggle="modal"
+                            data-target="#removeProducer" (click)="removeProducerWithConfirmationDialog(producer)">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

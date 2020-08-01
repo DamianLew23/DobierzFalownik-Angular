@@ -5,4 +5,5 @@ export interface Producer {
   name?: string;
   slug?: string;
   url?: string;
+  series?: Series[];
 }

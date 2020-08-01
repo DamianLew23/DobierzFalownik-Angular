@@ -11,11 +11,12 @@ import { SidebarAdminComponent } from '../modules/admin/components/sidebar-admin
 
 @NgModule({
   declarations: [FooterComponent, NavbarComponent, SidebarUserComponent, SidebarAdminComponent],
-  exports: [
-    FooterComponent,
-    NavbarComponent,
-    SidebarUserComponent
-  ],
+    exports: [
+        FooterComponent,
+        NavbarComponent,
+        SidebarUserComponent,
+        SidebarAdminComponent
+    ],
   imports: [
     CommonModule,
     RouterModule,

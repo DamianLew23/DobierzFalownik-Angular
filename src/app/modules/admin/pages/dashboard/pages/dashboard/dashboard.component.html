@@ -1,0 +1,79 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sidebar-admin></app-sidebar-admin>
+  <div class="sidebar-background" style="background-image: url(../../../../../../../assets/img/sidebar-4.jpg)"></div>
+</div>
+<div class="main-panel">
+  <app-navbar></app-navbar>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">info_outline</i>
+              </div>
+              <p class="card-category display-4">Falowniki</p>
+              <h3 class="card-title">{{(inverterDataSource.invertersCount$ | async)}}</h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">info</i> Liczba Falowników Dodanych Do Systemu
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-primary">
+              <h2 class="card-title">Falowniki</h2>
+              <p class="card-category">Ostatnio Dodane Falowniki</p>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                <th>ID</th>
+                <th>Model</th>
+                <th>Cena</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let inverter of inverters$ | async; let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{inverter.producerName}} {{inverter.seriesName}} {{inverter.model}}
+                  </td>
+                  <td>{{inverter.price}} zł</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <h2 class="card-title">Producenci</h2>
+              <p class="card-category">Dostępni Producenci Falowników</p>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                <th>ID</th>
+                <th>Nazwa</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let producer of producers$ | async; let i=index">
+                  <td>{{i+1}}</td>
+                  <td>{{producer.name}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

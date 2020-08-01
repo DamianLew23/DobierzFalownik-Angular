@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {InvertersPage} from '../../shared/models/inverters-page.model';
 import {InverterFilterCriteria} from '../../shared/models/inverter-filter-criteria.model';
+import {Inverter} from '../../shared/models/inverter.model';
+import {TokenStorageService} from '../authentication/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import {InverterFilterCriteria} from '../../shared/models/inverter-filter-criter
 export class InverterService {
   hostUrl = 'http://localhost:8080/api/inverters';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
 
   private static filterInverters(inverterFilterCriteria: InverterFilterCriteria): HttpParams {
@@ -65,6 +67,28 @@ export class InverterService {
         .set('size', pageSize.toString())
         .set('sort', sort)
     });
+  }
+
+  addInverter(inverter: Inverter): Observable<Inverter> {
+    return this.http.post(this.hostUrl, inverter, {
+      headers: this.httpHeaders()
+    });
+  }
+
+  updateInverter(inverter: Inverter, inverterId: number): Observable<Inverter> {
+    return this.http.put(this.hostUrl + '/' + inverterId, inverter, {
+      headers: this.httpHeaders()
+    });
+  }
+
+  removeInverter(inverterId: number): Observable<Inverter> {
+    return this.http.delete(this.hostUrl + '/' + inverterId);
+  }
+
+  private httpHeaders(): HttpHeaders {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + this.tokenStorageService.getToken());
+    return headers;
   }
 
 }

@@ -1,1 +1,19 @@
-<p>sidebar-login works!</p>
+<div class="logo">
+  <a href="https://dobierzfalownik.pl/" class="simple-text">
+
+    <i class="material-icons">
+      gps_fixed
+    </i> DobierzFalownik.pl
+  </a>
+</div>
+<div class="sidebar-wrapper">
+
+  <ul class="nav">
+    <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+      <a class="nav-link" [routerLink]="[menuItem.path]">
+        <i class="material-icons">{{menuItem.icon}}</i>
+        <p>{{menuItem.title}}</p>
+      </a>
+    </li>
+  </ul>
+</div>

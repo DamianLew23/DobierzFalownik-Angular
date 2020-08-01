@@ -1,0 +1,56 @@
+<div class="modal-content">
+  <form (ngSubmit)="passBackProducer()" name="editProducerForm" #editProducerForm="ngForm" novalidate>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edycja Producenta "{{producer.name}}"</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeActiveModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-11">
+          <mat-form-field class="example-full-width">
+            <mat-label>Nazwa Producenta:</mat-label>
+            <input matInput type="text" name="producerName" id="producerName" [(ngModel)]="producer.name" minlength="2"
+                   maxlength="32" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>URL:</mat-label>
+            <input matInput type="text" name="producerUrl" id="producerUrl" [(ngModel)]="producer.url">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-11">
+          <h4 class="modal-title mb-3">Serie Falowników:</h4>
+
+          <div class="row" *ngFor="let singleSeries of series$ | async">
+            <div class="col-sm-2">
+              <mat-form-field class="example-full-width">
+                <mat-label>Seria</mat-label>
+                <input matInput type="text" [(ngModel)]="singleSeries.name" name="{{singleSeries.name}}" minlength="2"
+                       maxlength="32" required>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-9">
+              <mat-form-field class="example-full-width">
+                <mat-label>URL</mat-label>
+                <input matInput type="text" [(ngModel)]="singleSeries.url" name="{{singleSeries.name}}-url">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-1">
+              <button mat-raised-button type="button" class="btn btn-danger btn-link btn-sm btn-just-icon"
+                      (click)="removeSeries(singleSeries)">
+                <i class="material-icons">close</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeActiveModal()">Anuluj</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!editProducerForm.valid">Zapisz Zmiany</button>
+    </div>
+  </form>
+</div>

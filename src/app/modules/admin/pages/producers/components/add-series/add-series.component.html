@@ -1,0 +1,28 @@
+<div class="modal-content">
+  <form (ngSubmit)="passBackProducerWithSeries()" name="addSeriesForm" #addSeriesForm="ngForm" novalidate>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Dodaj Serię</h4>
+      <button type="button" class="close" aria-label="Close" (click)="closeActiveModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-9">
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Nazwa Serii" name="seriesName" id="seriesName"
+                   [(ngModel)]="newSeries.name" minlength="2" maxlength="32" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="URL" name="producerUrl" id="seriesrUrl"
+                   [(ngModel)]="newSeries.url">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeActiveModal()">Anuluj</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!addSeriesForm.valid">Dodaj</button>
+    </div>
+  </form>
+</div>

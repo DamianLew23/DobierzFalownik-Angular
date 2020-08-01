@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { InverterDisplayComponent } from './components/inverter-display/inverter-display.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {CoreModule} from '../../core/core.module';
 
 
 
@@ -31,7 +32,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     UserRoutingModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CoreModule
   ]
 })
 export class UserModule { }

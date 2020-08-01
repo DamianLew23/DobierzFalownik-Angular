@@ -1,0 +1,103 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sidebar-admin></app-sidebar-admin>
+  <div class="sidebar-background" style="background-image: url(../../../../../../../assets/img/sidebar-4.jpg)"></div>
+</div>
+<div class="main-panel">
+  <app-navbar></app-navbar>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <div class="row">
+                <div class="col-md-9">
+                  <h2 class="card-title display-4">
+                    Falowniki w Bazie Danych
+                  </h2>
+                  <p class="card-category">
+                    Lista Falowników Dostępnych w Systemie Doboru
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <button type="button" class="btn btn-success">
+                    <i class="material-icons">add_circle_outline</i> Nowy Falownik
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group">
+                    <div class="dropdown">
+                      <button class="card-category btn dropdown-toggle mt-2" type="button" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                        Producent<ng-container *ngIf="invertersFilterCriteria.producerSlug">:{{invertersFilterCriteria.producerSlug | uppercase}}</ng-container>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" *ngFor="let producer of producers$ | async"
+                           (click)="producerFilter(producer)">{{producer.name}}</a>
+                      </div>
+                    </div>
+                    <div class="dropdown">
+                      <button class="card-category btn dropdown-toggle mt-2 ml-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="isSeriesDisable">
+                        Seria <ng-container *ngIf="invertersFilterCriteria.seriesSlug">:{{invertersFilterCriteria.seriesSlug | uppercase}}</ng-container>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" *ngFor="let singleSeries of series" (click)="seriesFilter(singleSeries)">
+                          {{singleSeries.name}}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                <th>ID</th>
+                <th>Producent</th>
+                <th>Seria</th>
+                <th>Model</th>
+                <th>Moc</th>
+                <th>U<sub>IN</sub></th>
+                <th>U<sub>OUT</sub></th>
+                <th>Opcje</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let inverter of inverters$ | async" [attr.id]="inverter.id">
+                  <td>{{inverter.id}}</td>
+                  <td>{{inverter.producerName}}</td>
+                  <td>{{inverter.seriesName}}</td>
+                  <td>{{inverter.model}}</td>
+                  <td>{{inverter.power}} W</td>
+                  <td>{{inverter.supplyVoltage}}</td>
+                  <td>{{inverter.outputVoltage}}</td>
+                  <td class="td-actions text-right">
+                    <button mat-raised-button type="button" matTooltip="Kopiuj Falownik" [matTooltipPosition]="'above'"
+                            class="btn btn-success btn-link btn-sm btn-just-icon" (click)="openModalCopyInverter(inverter)">
+                      <i class="material-icons">file_copy</i>
+                    </button>
+                    <button mat-raised-button type="button" matTooltip="Edycja Falownika" [matTooltipPosition]="'above'"
+                            class="btn btn-primary btn-link btn-sm btn-just-icon" (click)="openModalEditInverter(inverter)">
+                      <i class=" material-icons">edit</i>
+                    </button>
+                    <button mat-raised-button type="button" matTooltip="Usuń Falownik" [matTooltipPosition]="'above'"
+                            class="btn btn-danger btn-link btn-sm btn-just-icon" data-toggle="modal"
+                            data-target="#removeInverter" (click)="removeInverterWithConfirmationDialog(inverter)">
+                      <i class="material-icons">close</i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <mat-paginator [length]="(inverterDataSource.invertersCount$ | async)" [pageSize]="20"
+                             [pageSizeOptions]="[10, 20, 40, 60]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

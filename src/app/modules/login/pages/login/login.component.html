@@ -1,49 +1,56 @@
-<div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <div class="card">
-          <div class="card-header card-header-warning">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 class="card-title display-4">Zaloguj Się</h2>
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sidebar-login></app-sidebar-login>
+  <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+</div>
+<div class="main-panel">
+  <app-navbar></app-navbar>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="card-title display-4">Zaloguj Się</h2>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-12">
-                <!-- Default form login -->
-                <form *ngIf="!isLoggedIn" name="form" class="text-center border border-light p-5" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                  <!-- Email -->
-                  <div class="form-group">
-                    <input type="text" id="usernameLoginPage" name="username" class="form-control mb-4"
-                           placeholder="Nazwa Użytkownika" [(ngModel)]="form.username" required
-                           #username="ngModel" />
-                    <div class="alert alert-danger" role="alert" *ngIf="username.dirty && username.invalid">
-                      Pole Jest Wymagana!
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- Default form login -->
+                  <form *ngIf="!isLoggedIn" name="form" class="text-center border border-light p-5" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <!-- Email -->
+                    <div class="form-group">
+                      <input type="text" id="usernameLoginPage" name="username" class="form-control mb-4"
+                             placeholder="Nazwa Użytkownika" [(ngModel)]="form.username" required
+                             #username="ngModel" />
+                      <div class="alert alert-danger" role="alert" *ngIf="username.dirty && username.invalid">
+                        Pole Jest Wymagana!
+                      </div>
                     </div>
-                  </div>
 
-                  <!-- Password -->
-                  <input type="password" id="passwordLoginPage" name="password" class=" form-control mb-4"
-                         placeholder="Hasło" [(ngModel)]="form.password" required
-                         #password="ngModel" />
-                  <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-                    <div *ngIf="password.errors.required">Hasło Jest Wymagane</div>
-                  </div>
-                  <!-- Sign in button -->
-                  <div class="form-group">
-                    <button class="btn btn-primary btn-block my-4" type="submit">Zaloguj</button>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                      Login failed: {{ errorMessage }}
+                    <!-- Password -->
+                    <input type="password" id="passwordLoginPage" name="password" class=" form-control mb-4"
+                           placeholder="Hasło" [(ngModel)]="form.password" required
+                           #password="ngModel" />
+                    <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">Hasło Jest Wymagane</div>
                     </div>
-                  </div>
-                </form>
-                <!-- Default form login -->
+                    <!-- Sign in button -->
+                    <div class="form-group">
+                      <button class="btn btn-primary btn-block my-4" type="submit">Zaloguj</button>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                        Login failed: {{ errorMessage }}
+                      </div>
+                    </div>
+                  </form>
+                  <!-- Default form login -->
+                </div>
               </div>
             </div>
           </div>
@@ -51,4 +58,5 @@
       </div>
     </div>
   </div>
+  <app-footer></app-footer>
 </div>
